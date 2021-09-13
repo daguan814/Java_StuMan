@@ -115,7 +115,7 @@ public class XueSheng {
             JPanel jp2 = new JPanel(new GridLayout(3, 1, 0, 0));
             JLabel xuanze = new JLabel("选择要查看学期的成绩：");
             JButton shang = new JButton("上学期");
-            JButton xia = new JButton("上学期");
+            JButton xia = new JButton("下学期");
 
 
             //查成绩的按钮事件
@@ -139,10 +139,20 @@ public class XueSheng {
 
 
            //点击上学期显示成绩
+            ChengJi cha = new ChengJi();
             shang.addActionListener(new AbstractAction() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
+                cha.chacheng(1);
+                }
+            });
 
+            //点击下学期显示成绩
+            ChengJi xiaxue = new ChengJi();
+            xia.addActionListener(new AbstractAction() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    xiaxue.chacheng(2);
                 }
             });
 

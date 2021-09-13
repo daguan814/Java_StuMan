@@ -18,21 +18,25 @@ import java.sql.Statement;
  */
 
 public class ChengJi {
-    static JFrame jf = new JFrame("本学期成绩表");
 
-    public void chashang(int xueqi) {
-        jf.setBounds(800, 400, 500, 400);
-        jf.setResizable(false);
-        jf.setVisible(true);
-        jf.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        GridLayout buju = new GridLayout(7, 2, 80, 80);
+        JFrame jf = new JFrame("本学期成绩表");
+        GridLayout buju = new GridLayout(7, 2, 0, 0);
         JPanel jp = new JPanel(buju);
         Login login = new Login();
         String zhanghao = login.zhanghaofin;
         LianJie lian = new LianJie();
         Connection conn = lian.lianjie();
         Statement stmt = null;
+
+
+        public void chacheng(int xueqi) {
+        jf.setBounds(800, 400, 500, 400);
+        jf.setResizable(false);
+        jf.setVisible(true);
+
+
+
 
         try {
 
@@ -47,25 +51,25 @@ public class ChengJi {
             if (xueqi == 1) {
                 sql = " select  * from grade1 where 学号='" + zhanghao + "';";
                 diyi = "当前学期：上学期";
-                ke[1] = "C语言 ";
-                ke[2] = "Python程序设计 ";
-                ke[3] = "人工智能 ";
-                ke[4] = "数据结构 ";
-                ke[5] = "软件工程导论 ";
-                ke[6] = "市场营销 ";
-                ke[7] = "企业管理 ";
+                ke[1] = "C语言   ";
+                ke[2] = "Python程序设计   ";
+                ke[3] = "人工智能   ";
+                ke[4] = "数据结构   ";
+                ke[5] = "软件工程导论   ";
+                ke[6] = "市场营销   ";
+                ke[7] = "企业管理   ";
 
 
             } else {
                 sql = " select  * from grade2 where 学号='" + zhanghao + "';";
                 diyi = "当前学期：下学期";
-                ke[1] = "高等数学1 ";
-                ke[2] = "高等数学2 ";
-                ke[3] = "概率论 ";
-                ke[4] = "线性代数 ";
-                ke[5] = "离散结构 ";
-                ke[6] = "离散数学 ";
-                ke[7] = "傅里叶级数 ";
+                ke[1] = "高等数学1   ";
+                ke[2] = "高等数学2   ";
+                ke[3] = "概率论   ";
+                ke[4] = "线性代数   ";
+                ke[5] = "离散结构   ";
+                ke[6] = "离散数学   ";
+                ke[7] = "傅里叶级数   ";
             }
             ResultSet rs = stmt.executeQuery(sql);
 
@@ -86,14 +90,14 @@ public class ChengJi {
             String xuehao = "当前登录学号：" + X[1];
 
             //判断选修课选了没有或者考试了没有
-            if (X[7].equals(null)) {
+            if (X[7]==null) {
                 X[7] = " 未选";
-            } else if (X[7].equals(0)) {
+            } else if (X[7].equals("0")) {
                 X[7] = "旷考";
             }
-            if (X[8].equals(null)) {
+            if (X[8]==null) {
                 X[8] = " 未选";
-            } else if (X[8].equals(0)) {
+            } else if (X[8].equals("0")) {
                 X[8] = "旷考";
             }
 
@@ -103,14 +107,33 @@ public class ChengJi {
             JLabel L2 = new JLabel(xuehao);
             JLabel L3 = new JLabel("必修课成绩");
             JLabel L4 = new JLabel("选修课成绩");
-            JLabel L5 = new JLabel("C语言" + X[2]);
-            JLabel L6 = new JLabel("市场营销" + X[7]);
-            JLabel L7 = new JLabel(X[6]);
-            JLabel L8 = new JLabel(X[7]);
-            JButton chachengji = new JButton("查看成绩");
+            JLabel L5 = new JLabel(ke[1] + X[2]);
+            JLabel L6 = new JLabel(ke[6] + X[7]);
+            JLabel L7 = new JLabel(ke[2] + X[3]);
+            JLabel L8 = new JLabel(ke[7] + X[8]);
+            JLabel L9 = new JLabel(ke[3] + X[4]);
             JLabel L10 = new JLabel("");
-            JLabel L11 = new JLabel("");
+            JLabel L11 = new JLabel(ke[4] + X[5]);
             JLabel L12 = new JLabel("");
+            JLabel L13 = new JLabel(ke[5] + X[6]);
+            JLabel L14 = new JLabel("");
+
+            jp.add(L1);
+            jp.add(L2);
+            jp.add(L3);
+            jp.add(L4);
+            jp.add(L5);
+            jp.add(L6);
+            jp.add(L7);
+            jp.add(L8);
+            jp.add(L9);
+            jp.add(L10);
+            jp.add(L11);
+            jp.add(L12);
+            jp.add(L13);
+            jp.add(L14);
+
+            jf.add(jp);
 
 
         } catch (SQLException throwables) {
@@ -119,11 +142,6 @@ public class ChengJi {
 
     }
 
-    public static void main(String[] args) {
-        jf.setBounds(800, 400, 500, 400);
-        jf.setResizable(false);
-        jf.setVisible(true);
-        jf.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
     }
-}
+
