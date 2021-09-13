@@ -5,6 +5,7 @@ import 登录_Main.Login;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -26,7 +27,7 @@ public class XueSheng {
         jf.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         //定义网格布局
-        GridLayout buju = new GridLayout(3, 4,80,80);
+        GridLayout buju = new GridLayout(3, 4, 80, 80);
         JPanel jp = new JPanel(buju);
 
         //将学生的信息提取出来
@@ -104,17 +105,46 @@ public class XueSheng {
 
             jf.add(jp);
 
-            //第二个窗口
-            JDialog jd = new JDialog(jf, "");
-            jd.setBounds(700, 400, 300, 200);
-            LianJie Con = new LianJie();
 
-            //语句和按键
-            JPanel jp2 = new JPanel(new GridLayout(4, 1, 0, 0));
-            Con.lianjie();
-            JLabel lianjietip = new JLabel(Con.chenggong);
-            JLabel lab = new JLabel();
-            JButton queren = new JButton("确定");
+            //第二个窗口 确认是查第几个学期的成绩。
+            JDialog jd = new JDialog(jf, "成绩");
+            jd.setBounds(700, 400, 300, 200);
+
+
+            //语句和按键  选择上学期或下学期
+            JPanel jp2 = new JPanel(new GridLayout(3, 1, 0, 0));
+            JLabel xuanze = new JLabel("选择要查看学期的成绩：");
+            JButton shang = new JButton("上学期");
+            JButton xia = new JButton("上学期");
+
+
+            //查成绩的按钮事件
+            chachengji.addActionListener(new AbstractAction() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    if (X[7].equals("账号状态：可用")) {
+                        jp2.add(xuanze);
+                        jp2.add(shang);
+                        jp2.add(xia);
+
+                    } else {
+                        xuanze.setText("您已毕业或者被管理员禁用故无法进行任何操作！");
+                        jp2.add(xuanze);
+                    }
+
+                    jd.add(jp2);
+                    jd.setVisible(true);
+                }
+            });
+
+
+           //点击上学期显示成绩
+            shang.addActionListener(new AbstractAction() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+
+                }
+            });
 
 
         } catch (SQLException throwables) {
