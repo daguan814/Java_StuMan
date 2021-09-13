@@ -69,8 +69,10 @@ public class XueSheng {
             JLabel L5 = new JLabel(X[4]);
             JLabel L6 = new JLabel(X[5]);
             JLabel L7 = new JLabel(X[6]);
+
+
             JLabel L8 = new JLabel(X[7]);
-            JButton chachengji = new JButton("查看成绩");
+            JButton chachengji = new JButton("查看成绩");  //第一个按钮
             JLabel L10 = new JLabel("");
             JLabel L11 = new JLabel("");
             JLabel L12 = new JLabel("");
