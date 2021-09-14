@@ -7,6 +7,8 @@
 package 登录_Main;
 
 import 学生.XueSheng;
+import 教师.JiaoShi;
+import 管理员.Admin;
 
 import javax.swing.*;
 import java.awt.*;
@@ -117,7 +119,8 @@ public class Login {
 
         //跳转到各个不同用户的界面
         XueSheng xueSheng = new XueSheng();
-
+        JiaoShi jiao = new JiaoShi();
+        Admin ad = new Admin();
 
         queren.addActionListener(new AbstractAction() {
             @Override
@@ -128,7 +131,7 @@ public class Login {
                     jd.setVisible(false);
                 }else if(yan.yanzheng().equals("登录成功，身份是：教师")){
                     //教师登录
-
+                    jiao.Jiaoshow();
 
                 }else if(yan.yanzheng().equals("登录成功，身份是：学生")){
                     //学生登录
@@ -137,7 +140,7 @@ public class Login {
                 }
                 else{
                     //管理员登录
-
+                    ad.Adminshow();
                 }
 
             }

@@ -1,5 +1,6 @@
-package 学生;
+package 管理员;
 
+import 学生.ChengJi;
 import 登录_Main.LianJie;
 import 登录_Main.Login;
 
@@ -12,15 +13,15 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
- * @ClassName: XueSheng
- * @Description: 学生的主窗口
+ * @ClassName: Admin
+ * @Description: TODO
  * @author: 达观
- * @date: 2021/9/13  9:13
+ * @date: 2021/9/14  21:12
  */
-public class XueSheng {
-    JFrame jf = new JFrame("学生信息");
+public class Admin {
+    JFrame jf = new JFrame("管理员操作台");
 
-    public void showStu() {
+    public void Adminshow() {
         jf.setBounds(400, 100, 800, 600);
         jf.setResizable(false);
         jf.setVisible(true);
@@ -142,12 +143,12 @@ public class XueSheng {
 
 // 选课  （四选二）
 
-           //点击上学期显示成绩
+            //点击上学期显示成绩
             ChengJi cha = new ChengJi();
             shang.addActionListener(new AbstractAction() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                cha.chacheng(1);
+                    cha.chacheng(1);
                 }
             });
 
@@ -167,6 +168,4 @@ public class XueSheng {
 
 
     }
-
-
 }
