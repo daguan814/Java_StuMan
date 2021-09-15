@@ -88,7 +88,11 @@ public class XueSheng {
             L6.setFont(zi);
             L7.setFont(zi);
             L8.setFont(zi);
+            tui.setFont(zi);
+            gai.setFont(zi);
             Xuan.setFont(zi);
+            chachengji.setFont(zi);
+
 
 
             //添加进去

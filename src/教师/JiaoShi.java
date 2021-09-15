@@ -45,39 +45,54 @@ public class JiaoShi {
             ResultSet rs = stmt.executeQuery(sql);
 
             //获取老师数据
+            String kehao1 = null;
+            String kehao2 = null;
             String[] X = new String[10];
             if (rs.next()) {
 
                 X[1] = rs.getString(1);
                 X[3] = rs.getString(3);
                 X[4] = rs.getString(4);
-                X[5] = rs.getString(5);
-                X[6] = rs.getString(6);
+                kehao1 = rs.getString(5);
+                kehao2 = rs.getString(6);
 
             }
 
 
+            //对照老师教的什么科目
+            sql = " select  * from cvk where 课号1 ='" + kehao1 + "' or 课号2 ='" + kehao1 + "' or 课号3 ='" + kehao1 + "'or 课号4 ='" + kehao1 + "';";
+            rs = stmt.executeQuery(sql);
+            String kechengming1 = null;
+            if (rs.next()) {
+                kechengming1 = rs.getString(1);
+
+            }
+
+
+            sql = " select  * from cvk where 课号1 ='" + kehao2 + "' or 课号2 ='" + kehao2 + "' or 课号3 ='" + kehao2 + "'or 课号4 ='" + kehao2 + "';";
+            rs = stmt.executeQuery(sql);
+            String kechengming2 = null;
+            if (rs.next()) {
+                kechengming2 = rs.getString(1);
+
+            }
+
             X[1] = "职工号：" + X[1];
             X[3] = "姓名：" + X[3];
             X[4] = "性别：" + X[4];
-            X[5] = "课号1：" + X[5];
-            X[6] = "课号2：" + X[6];
+            X[5] = "课号1：" + kehao1 +"   " +kechengming1 ;
+            X[6] = "课号2：" + kehao2 +"   " +kechengming2;
 
 
-
+//完成界面的组件
             JLabel L1 = new JLabel(X[1]);
             JLabel L2 = new JLabel(X[3]);
             JLabel L3 = new JLabel(X[4]);
             JLabel L4 = new JLabel("所教授课号：");
             JLabel L5 = new JLabel(X[5]);
             JLabel L6 = new JLabel(X[6]);
-
-
-
-
-            JButton luchengji = new JButton("录所授成绩");  //第一个按钮
-            JButton Xuan = new JButton("选课");
-            JButton tui = new JButton("退课");
+            JButton luchengji = new JButton("录所授成绩");  //按钮
+            JButton kan = new JButton("看学生成绩");
             JButton gai = new JButton("修改密码");
 
 
@@ -89,8 +104,9 @@ public class JiaoShi {
             L4.setFont(zi);
             L5.setFont(zi);
             L6.setFont(zi);
-
-            Xuan.setFont(zi);
+            luchengji.setFont(zi);
+            kan.setFont(zi);
+            gai.setFont(zi);
 
 
             //添加进去
@@ -101,8 +117,8 @@ public class JiaoShi {
             jp.add(L5);
             jp.add(L6);
 
-            jp.add(Xuan);
-            jp.add(tui);
+            jp.add(luchengji);
+            jp.add(kan);
             jp.add(gai);
 
             jf.add(jp);
@@ -113,7 +129,7 @@ public class JiaoShi {
             jd.setBounds(700, 400, 300, 200);
 
 
-            //语句和按键  选择上学期或下学期
+            //语句和按键  点击了录学生成绩就出现的窗口
             JPanel jp2 = new JPanel(new GridLayout(3, 1, 0, 0));
             JLabel xuanze = new JLabel("选择要查看学期的成绩：");
             JButton shang = new JButton("上学期");
@@ -124,15 +140,6 @@ public class JiaoShi {
             luchengji.addActionListener(new AbstractAction() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    if (X[7].equals("账号状态：可用")) {
-                        jp2.add(xuanze);
-                        jp2.add(shang);
-                        jp2.add(xia);
-
-                    } else {
-                        xuanze.setText("您已毕业或者被管理员禁用故无法进行任何操作！");
-                        jp2.add(xuanze);
-                    }
 
                     jd.add(jp2);
                     jd.setVisible(true);
