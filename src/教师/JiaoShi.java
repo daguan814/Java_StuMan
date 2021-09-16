@@ -122,6 +122,48 @@ public class JiaoShi {
 
             jf.add(jp);
 
+            //查看学生成绩窗口
+            //第二个窗口 录成绩的窗口   语句和按键  点击了录学生成绩就出现的窗口
+            JDialog chakan = new JDialog(jf, "查看学生成绩");
+            chakan.setBounds(400, 400, 400, 200);
+
+            JPanel jp3 = new JPanel(new GridLayout(2, 1, 80, 80));
+            JTextField kan_ming = new JTextField("请输入所授课程名");
+            JButton kan_bu = new JButton("确认");
+            jp3.add(kan_ming);
+            jp3.add(kan_bu);
+//点击查看学生成绩后出现的输入窗口
+            String finalKechengming1 = kechengming1;
+            String finalKechengming3 = kechengming2;
+
+            //唤起写课程名的窗口
+            kan.addActionListener(new AbstractAction() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    chakan.add(jp3);
+                    chakan.setVisible(true);
+                }
+            });
+
+            kan_bu.addActionListener(new AbstractAction() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    if (kan_ming.getText().equals(finalKechengming1)||kan_ming.getText().equals(finalKechengming3)){
+                        //唤起一个只有文本域的窗口专门显示其成绩  按钮显示提示
+                        kan_bu.setText("查询成功！");
+                        KanJi kj =new KanJi();
+                        kj.Kanchengji(kan_ming.getText());
+
+                    }else{
+                        kan_bu.setText("您还没有教授这门课！");
+                    }
+                }
+            });
+
+
+
+
+
 
             //第二个窗口 录成绩的窗口   语句和按键  点击了录学生成绩就出现的窗口
             JDialog jd = new JDialog(jf, "录入学生成绩");
@@ -145,10 +187,14 @@ public class JiaoShi {
                 public void actionPerformed(ActionEvent e) {
                     jd.add(jp2);
                     jd.setVisible(true);
+
+
                 }
             });
-            //点击了确认就开始验证课程名 然后写成绩
 
+            //点击了确认就开始验证课程名 然后写成绩
+//            教师不使用课号录入成绩的原因：1. 没有必要，会增加数据库的学生和课号的对照表。 2.如果管理员分配课号在 CVK中没有
+//                    使用课号将会出现bug
 
             ChaCun cha = new ChaCun();
             sql = " select  * from tea where 职工号 ='" + zhanghao + "';";
