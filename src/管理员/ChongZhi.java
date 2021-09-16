@@ -30,7 +30,7 @@ public class ChongZhi {
 
             //重置密码
 
-            String sql = " update "+ biao+ " set  密码 =  " + mima + " where  " +xueORshi +  " = " + haoma + ";";
+            String sql = " update "+ biao+ " set  密码 =  '" + mima + "' where  " +xueORshi +  "  = '" + haoma + "';";
             int rs = stmt.executeUpdate(sql);
 
 

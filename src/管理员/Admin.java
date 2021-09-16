@@ -86,8 +86,8 @@ public class Admin {
 
 
             //语句和按键  选择上学期或下学期
-            JPanel jp2 = new JPanel(new GridLayout(2, 1, 40, 0));
-            JTextField jt = new JTextField("请输入职工号或学号");
+            JPanel jp2 = new JPanel(new GridLayout(2, 1, 40, 70));
+            JTextField jt = new JTextField("");
             JButton jb = new JButton("确认");
             jp2.add(jt);
             jp2.add(jb);
@@ -99,6 +99,7 @@ public class Admin {
 
                     jd.setVisible(true);
                     ChaShiCun cha = new ChaShiCun();
+                    jt.setText("请输入职工号");
 
                     //为二级菜单添加确认
 
