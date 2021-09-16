@@ -38,8 +38,7 @@ public class YanZheng {
                     jieguo = "密码错误！";
                 }
 
-//                sql = " select  职工号 from stu where 职工号="+zhanghao+";";
-//                rs = stmt.executeQuery(sql);
+
             }else {
                 sql = " select  * from tea where 职工号='"  +zhanghao+ "';";
                 rs = stmt.executeQuery(sql);

@@ -80,11 +80,11 @@ public class JiaoShi {
             X[1] = "职工号：" + X[1];
             X[3] = "姓名：" + X[3];
             X[4] = "性别：" + X[4];
-            X[5] = "课号1：" + kehao1 +"   " +kechengming1 ;
-            X[6] = "课号2：" + kehao2 +"   " +kechengming2;
+            X[5] = "课号1：" + kehao1 + "   " + kechengming1;
+            X[6] = "课号2：" + kehao2 + "   " + kechengming2;
 
 
-//完成界面的组件
+            //完成界面的组件
             JLabel L1 = new JLabel(X[1]);
             JLabel L2 = new JLabel(X[3]);
             JLabel L3 = new JLabel(X[4]);
@@ -109,14 +109,13 @@ public class JiaoShi {
             gai.setFont(zi);
 
 
-            //添加进去
+            // 第一窗口的组件添加进去
             jp.add(L1);
             jp.add(L2);
             jp.add(L3);
             jp.add(L4);
             jp.add(L5);
             jp.add(L6);
-
             jp.add(luchengji);
             jp.add(kan);
             jp.add(gai);
@@ -124,46 +123,72 @@ public class JiaoShi {
             jf.add(jp);
 
 
-            //第二个窗口 确认是查第几个学期的成绩。
-            JDialog jd = new JDialog(jf, "成绩");
-            jd.setBounds(700, 400, 300, 200);
+            //第二个窗口 录成绩的窗口   语句和按键  点击了录学生成绩就出现的窗口
+            JDialog jd = new JDialog(jf, "录入学生成绩");
+            jd.setBounds(400, 400, 500, 400);
+
+            JPanel jp2 = new JPanel(new GridLayout(4, 1, 80, 80));
+            JTextField keming = new JTextField("请输入所授课程名");
+            JTextField haoma = new JTextField("请输入该生学号");
+            JTextField cheng = new JTextField("请输入该生成绩");
+            JButton queren = new JButton("确认");
+
+            jp2.add(keming);
+            jp2.add(haoma);
+            jp2.add(cheng);
+            jp2.add(queren);
 
 
-            //语句和按键  点击了录学生成绩就出现的窗口
-            JPanel jp2 = new JPanel(new GridLayout(3, 1, 0, 0));
-            JLabel xuanze = new JLabel("选择要查看学期的成绩：");
-            JButton shang = new JButton("上学期");
-            JButton xia = new JButton("下学期");
-
-
-            //查成绩的按钮事件
+            //录入成绩的按钮事件
             luchengji.addActionListener(new AbstractAction() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-
                     jd.add(jp2);
                     jd.setVisible(true);
                 }
             });
+            //点击了确认就开始验证课程名 然后写成绩
 
 
-// 选课  （四选二）
+            ChaCun cha = new ChaCun();
+            sql = " select  * from tea where 职工号 ='" + zhanghao + "';";
+            rs = stmt.executeQuery(sql);
 
-            //点击上学期显示成绩
-            ChengJi cha = new ChengJi();
-            shang.addActionListener(new AbstractAction() {
+            String finalKechengming2 = kechengming1;
+            String finalKechengming = kechengming2;
+            queren.addActionListener(new AbstractAction() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    cha.chacheng(1);
-                }
-            });
+                    String km = keming.getText();  //点击了按钮再去验证
 
-            //点击下学期显示成绩
-            ChengJi xiaxue = new ChengJi();
-            xia.addActionListener(new AbstractAction() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    xiaxue.chacheng(2);
+                    int flag = 1;
+                    if (!km.equals(finalKechengming) && !km.equals(finalKechengming2)) {
+                        keming.setText("您没有教授这门课！") ;
+                    flag = 0;
+                    }
+                        ;
+
+                     //判断这个人学号存不存在
+                    if (!cha.ChaXue(haoma.getText())) {
+                        //如果不存在
+                        haoma.setText("没有这个学生！");
+                        flag = 0;
+                    }
+
+                    if(flag == 1){   //通过所有验证 写入数据
+                       int x =  Integer.parseInt(cheng.getText());
+
+                        String sql = " update  grade1 set "  + km+  " = " + x + "  where 学号 = '"+haoma.getText()+"';";
+                        try {
+                            int rs = stmt.executeUpdate(sql);
+                        } catch (SQLException ex) {
+                            ex.printStackTrace();
+                        }
+
+                        queren.setText("录入成功！");
+                    }
+
+
                 }
             });
 
