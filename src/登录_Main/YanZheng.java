@@ -47,7 +47,7 @@ public class YanZheng {
                     String mimazhen = rs.getString(2);
 
                     if (mimazhen.equals(mima)) {
-                        if (zhadmin.equals("001")) {
+                        if (zhadmin.equals("admin")) {
                             jieguo = "系统管理员，欢迎登录！";
                             return jieguo;
                         }
