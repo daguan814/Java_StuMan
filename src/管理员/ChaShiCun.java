@@ -14,7 +14,7 @@ import java.sql.Statement;
  * @date: 2021/9/16  22:16
  */
 public class ChaShiCun {
-    public boolean ChaXue(String haoma){
+    public boolean ChaCun(String haoma){
 
 
         LianJie lian = new LianJie();

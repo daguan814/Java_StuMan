@@ -1,6 +1,7 @@
 package 管理员;
 
 import 学生.ChengJi;
+import 教师.ChaCun;
 import 登录_Main.LianJie;
 import 登录_Main.Login;
 
@@ -85,7 +86,8 @@ public class Admin {
             jd.setBounds(700, 400, 300, 200);
 
 
-            //语句和按键  选择上学期或下学期
+            //语句和按键 重置密码操作
+
             JPanel jp2 = new JPanel(new GridLayout(2, 1, 40, 70));
             JTextField jt = new JTextField("");
             JButton jb = new JButton("确认");
@@ -93,20 +95,21 @@ public class Admin {
             jp2.add(jb);
             jd.add(jp2);
 
+            //重置教师密码
             jb1.addActionListener(new AbstractAction() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
 
+                    jt.setText("请输入职工号");
+                    jb.setText("确认");
                     jd.setVisible(true);
                     ChaShiCun cha = new ChaShiCun();
-                    jt.setText("请输入职工号");
 
-                    //为二级菜单添加确认
 
                     jb.addActionListener(new AbstractAction() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
-                            if(cha.ChaXue(jt.getText())){
+                            if(cha.ChaCun(jt.getText())){
                                 jb.setText("重置成功!");
                                 ChongZhi chong  = new ChongZhi();
                                 chong.Chong(jt.getText(),"123456","职工号" , "tea");
@@ -122,11 +125,148 @@ public class Admin {
                 }
             });
 
+            //重置学生的密码
+        jb2.addActionListener(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                jt.setText("请输入学号");
+                jb.setText("确认");
+                jd.setVisible(true);
+                ChaCun cha = new ChaCun();
 
 
-// 选课  （四选二）
+                //为二级菜单添加确认
+
+                jb.addActionListener(new AbstractAction() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        if(cha.ChaXue(jt.getText())){
+                            jb.setText("重置成功!");
+                            ChongZhi chong  = new ChongZhi();
+                            chong.Chong(jt.getText(),"123123","学号" , "stu");
+                        }
+                        else {
+                            jb.setText("该学生不存在!");
+                        }
+                    }
 
 
+                });
+
+            }
+        });
+
+
+
+// 配置课程
+
+        JDialog jd1 = new JDialog(jf, "配置课程");
+        jd1.setBounds(700, 400, 300, 200);
+
+        JPanel jp3 = new JPanel(new GridLayout(3, 1, 0, 0));
+        JTextField jf1 = new JTextField("");
+        JTextField jf2 = new JTextField("");
+        JButton  jb11= new JButton("确认");
+        jp3.add(jf1);
+        jp3.add(jf2);
+        jp3.add(jb11);
+        jd1.add(jp3);
+
+        //为老师配置课程
+        jb3.addActionListener(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                jf1.setText("请输入教师职工号");
+                jf2.setText("请输入课号");
+                jb11.setText("确认");
+                jd1.setVisible(true);
+                ChaShiCun cha = new ChaShiCun();
+
+                jb11.addActionListener(new AbstractAction() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        if(cha.ChaCun(jf1.getText())){
+
+
+                            LianJie lian = new LianJie();
+                            Connection conn = lian.lianjie();
+                            Statement stmt = null;
+
+                                try {
+                                    stmt = conn.createStatement();
+
+                                    String sql = "update tea set 课号2  = '"+jf2.getText()+"' where 职工号 = '" + jf1.getText()+"';";
+                                    int rs = stmt.executeUpdate(sql);
+                                    jb11.setText("配课成功!");
+
+                                } catch (SQLException ex) {
+                                    ex.printStackTrace();
+                                }
+
+
+                                //重置密码
+
+
+                            }
+                        else {
+                            jb11.setText("该老师不存在!");
+                        }
+                    }
+
+
+                });
+            }
+        });
+
+
+        //为学生选课
+        jb4.addActionListener(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                jf1.setText("请输入学号");
+                jf2.setText("请输入课名");
+                jb11.setText("确认");
+                jd1.setVisible(true);
+               ChaCun cha = new ChaCun();
+
+                jb11.addActionListener(new AbstractAction() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        if(cha.ChaXue(jf1.getText())){
+
+                            if(jf2.getText().equals("市场营销")||jf2.getText().equals("企业管理")){
+                                LianJie lian = new LianJie();
+                                Connection conn = lian.lianjie();
+                                Statement stmt = null;
+
+                                try {
+                                    stmt = conn.createStatement();
+                                                            //学生表 增加一个数据
+                                    String sql = "update stu set 选修  = '"+jf2.getText()+"' where 学号 = '" + jf1.getText()+"';";
+                                    int rs = stmt.executeUpdate(sql);
+                                                          //成绩表 增加一个成绩
+                                     sql = "update grade1 set "+jf2.getText()+ " = '0'  where 学号 = '" + jf1.getText()+"';";
+                                     rs = stmt.executeUpdate(sql);
+
+                                    jb11.setText("选课成功!");
+
+                                } catch (SQLException ex) {
+                                    ex.printStackTrace();
+                                }
+
+
+                            }else{jb11.setText("本学期不可选此课"); }
+
+                        }
+                        else {
+                            jb11.setText("该学生不存在!");
+                        }
+                    }
+
+
+                });
+            }
+        });
 
 
     }}

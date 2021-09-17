@@ -93,12 +93,12 @@ public class ChengJi {
             if (X[7]==null) {
                 X[7] = " 未选";
             } else if (X[7].equals("0")) {
-                X[7] = "旷考";
+                X[7] = "未开始考试";
             }
             if (X[8]==null) {
                 X[8] = " 未选";
             } else if (X[8].equals("0")) {
-                X[8] = "旷考";
+                X[8] = "未开始考试";
             }
 
 

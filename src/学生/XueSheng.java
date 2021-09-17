@@ -51,6 +51,7 @@ public class XueSheng {
                 X[5] = rs.getString(5);
                 X[6] = rs.getString(6);
                 X[7] = rs.getString(7);
+                X[8] = rs.getString(8);
             }
 
 
@@ -60,11 +61,12 @@ public class XueSheng {
             X[5] = "性别：" + X[5];
             X[6] = "年龄：" + X[6];
             X[7] = "账号状态：" + X[7];
+            X[8] = "本学期选修：" + X[8];
 
 
             JLabel L1 = new JLabel(X[1]);
             JLabel L2 = new JLabel(X[3]);
-            JLabel L3 = new JLabel("");
+            JLabel L3 = new JLabel(X[8]);
             JLabel L4 = new JLabel("");
             JLabel L5 = new JLabel(X[4]);
             JLabel L6 = new JLabel(X[5]);
