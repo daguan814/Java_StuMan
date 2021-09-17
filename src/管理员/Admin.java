@@ -29,7 +29,7 @@ public class Admin {
         jf.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         //定义网格布局
-        GridLayout buju = new GridLayout(5, 3, 80, 80);
+        GridLayout buju = new GridLayout(3, 3, 80, 80);
         JPanel jp = new JPanel(buju);
 
         //布局
@@ -42,12 +42,8 @@ public class Admin {
         JLabel L5 = new JLabel("          配置课程");
         JButton jb3 = new JButton("为老师配课");
         JButton jb4 = new JButton("为学生选课");
-        JLabel L6 = new JLabel("          增加人员");
-        JButton jb5 = new JButton("增加一个老师");
-        JButton jb6 = new JButton("增加一个学生");
-        JLabel L7 = new JLabel("          删除人员");
-        JButton jb8 = new JButton("删除一个老师");
-        JButton jb9 = new JButton("删除一个学生");
+
+
 
         Font zi = new Font("宋体", Font.TYPE1_FONT, 30);
 
@@ -56,8 +52,8 @@ public class Admin {
         Font xi = new Font("宋体", Font.TYPE1_FONT, 20);
         L4.setFont(xi);
         L5.setFont(xi);
-        L6.setFont(xi);
-        L7.setFont(xi);
+
+
 
 
 
@@ -71,12 +67,8 @@ public class Admin {
         jp.add(L5);
         jp.add(jb3);
         jp.add(jb4);
-        jp.add(L6);
-        jp.add(jb5);
-        jp.add(jb6);
-        jp.add(L7);
-        jp.add(jb8);
-        jp.add(jb9);
+
+
 
         jf.add(jp);
 
@@ -267,6 +259,9 @@ public class Admin {
                 });
             }
         });
+
+
+
 
 
     }}

@@ -1,5 +1,7 @@
 package 学生;
 
+import 教师.ChaCun;
+import 登录_Main.GaiPSW;
 import 登录_Main.LianJie;
 import 登录_Main.Login;
 
@@ -54,14 +56,14 @@ public class XueSheng {
                 X[8] = rs.getString(8);
             }
 
-
+            String temp = X[1];
             X[1] = "学号：" + X[1];
             X[3] = "班级：" + X[3];
             X[4] = "姓名：" + X[4];
             X[5] = "性别：" + X[5];
             X[6] = "年龄：" + X[6];
             X[7] = "账号状态：" + X[7];
-            X[8] = "本学期选修：" + X[8];
+            X[8] = "选修：" + X[8];
 
 
             JLabel L1 = new JLabel(X[1]);
@@ -76,7 +78,7 @@ public class XueSheng {
             JLabel L8 = new JLabel(X[7]);
             JButton chachengji = new JButton("查看成绩");  //第一个按钮
             JButton Xuan = new JButton("选课");
-            JButton tui = new JButton("退课");
+            JButton tui = new JButton("刷新");
             JButton gai = new JButton("修改密码");
 
 
@@ -90,8 +92,8 @@ public class XueSheng {
             L6.setFont(zi);
             L7.setFont(zi);
             L8.setFont(zi);
-            tui.setFont(zi);
             gai.setFont(zi);
+            tui.setFont(zi);
             Xuan.setFont(zi);
             chachengji.setFont(zi);
 
@@ -108,15 +110,14 @@ public class XueSheng {
             jp.add(L8);
             jp.add(chachengji);
             jp.add(Xuan);
-            jp.add(tui);
             jp.add(gai);
-
+            jp.add(tui);
             jf.add(jp);
 
 
             //第二个窗口 确认是查第几个学期的成绩。
             JDialog jd = new JDialog(jf, "成绩");
-            jd.setBounds(700, 400, 300, 200);
+            jd.setBounds(800, 400, 300, 200);
 
 
             //语句和按键  选择上学期或下学期
@@ -146,7 +147,7 @@ public class XueSheng {
             });
 
 
-// 选课  （四选二）
+
 
            //点击上学期显示成绩
             ChengJi cha = new ChengJi();
@@ -166,10 +167,118 @@ public class XueSheng {
                 }
             });
 
+            //修改密码
+            JDialog jd1 = new JDialog(jf, "修改密码");
+            jd1.setBounds(400, 400, 300, 200);
+
+            JPanel jp5 = new JPanel(new GridLayout(2, 1, 60, 60));
+            JTextField mima = new JTextField("请输入新密码");
+            JButton ok = new JButton("确认");
+            jp5.add(mima);
+            jp5.add(ok);
+            jd1.add(jp5);
+
+
+
+            gai.addActionListener(new AbstractAction() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    jd1.setVisible(true);
+                    ok.addActionListener(new AbstractAction() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            GaiPSW gai = new GaiPSW();
+                            gai.xiugaimima(1,temp,mima.getText());
+                            ok.setText("修改成功");
+                        }
+                    });
+
+                }
+            });
+
+
+
+//刷新页面
+            tui.addActionListener(new AbstractAction() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    jf.setVisible(false);
+                    XueSheng xue = new XueSheng();
+                    xue.showStu();
+                }
+            });
+
+
+            //选课
+
+            JDialog jd9 = new JDialog(jf, "选本学期课程");
+            jd1.setBounds(700, 400, 300, 200);
+
+            JPanel jp3 = new JPanel(new GridLayout(2, 1, 60, 60));
+            JTextField jf1 = new JTextField("");
+            JButton  jb11= new JButton("确认");
+            jp3.add(jf1);
+            jp3.add(jb11);
+            jd1.add(jp3);
+
+            //选课
+            Xuan.addActionListener(new AbstractAction() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    jf1.setText("请输入课名");
+
+                    jb11.setText("确认");
+                    jd1.setVisible(true);
+                    ChaCun cha = new ChaCun();
+
+                    jb11.addActionListener(new AbstractAction() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            if(cha.ChaXue(temp)){
+
+                                if(jf1.getText().equals("市场营销")||jf1.getText().equals("企业管理")){
+                                    LianJie lian = new LianJie();
+                                    Connection conn = lian.lianjie();
+                                    Statement stmt = null;
+
+                                    try {
+                                        stmt = conn.createStatement();
+                                        //学生表 增加一个数据
+                                        String sql = "update stu set 选修  = '"+jf1.getText()+"' where 学号 = '" + temp+"';";
+                                        int rs = stmt.executeUpdate(sql);
+                                        //成绩表 增加一个成绩
+                                        sql = "update grade1 set "+jf1.getText()+ " = '0'  where 学号 = '" + temp+"';";
+                                        rs = stmt.executeUpdate(sql);
+
+                                        jb11.setText("选课成功!");
+
+                                    } catch (SQLException ex) {
+                                        ex.printStackTrace();
+                                    }
+
+
+                                }else{jb11.setText("本学期不可选此课"); }
+
+                            }
+                            else {
+                                jb11.setText("该学生不存在!");
+                            }
+                        }
+
+
+                    });
+                }
+            });
+
+
+
+
+
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+
 
 
     }

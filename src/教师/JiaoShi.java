@@ -1,6 +1,7 @@
 package 教师;
 
 import 学生.ChengJi;
+import 登录_Main.GaiPSW;
 import 登录_Main.LianJie;
 import 登录_Main.Login;
 
@@ -76,7 +77,7 @@ public class JiaoShi {
                 kechengming2 = rs.getString(1);
 
             }
-
+            String temp = X[1]; //给修改密码用
             X[1] = "职工号：" + X[1];
             X[3] = "姓名：" + X[3];
             X[4] = "性别：" + X[4];
@@ -234,6 +235,35 @@ public class JiaoShi {
                         queren.setText("录入成功！");
                     }
 
+
+                }
+            });
+
+            //修改密码
+            JDialog jd1 = new JDialog(jf, "修改密码");
+            jd1.setBounds(400, 400, 300, 200);
+
+            JPanel jp5 = new JPanel(new GridLayout(2, 1, 60, 60));
+            JTextField mima = new JTextField("请输入新密码");
+            JButton ok = new JButton("确认");
+            jp5.add(mima);
+            jp5.add(ok);
+            jd1.add(jp5);
+
+
+
+            gai.addActionListener(new AbstractAction() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    jd1.setVisible(true);
+                    ok.addActionListener(new AbstractAction() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            GaiPSW gai = new GaiPSW();
+                            gai.xiugaimima(2,temp,mima.getText());
+                            ok.setText("修改成功");
+                        }
+                    });
 
                 }
             });
