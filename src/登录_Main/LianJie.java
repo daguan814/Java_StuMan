@@ -1,17 +1,10 @@
-package 登录_Main;//导入包
+package 登录_Main;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 
-//
-// Statement stmt = con.createStatement();
-//         String sql = " update grade set C语言 = 20 where 学号=10309; ";
-//         int rs = stmt.executeUpdate(sql);
-/*
- * 数据库连接
- */
 public class LianJie {
 
     public String chenggong;
