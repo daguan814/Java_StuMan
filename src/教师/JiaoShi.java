@@ -152,8 +152,14 @@ public class JiaoShi {
                     if (kan_ming.getText().equals(finalKechengming1)||kan_ming.getText().equals(finalKechengming3)){
                         //唤起一个只有文本域的窗口专门显示其成绩  按钮显示提示
                         kan_bu.setText("查询成功！");
-                        KanJi kj =new KanJi();
-                        kj.Kanchengji(kan_ming.getText());
+                        try {
+                            ChaCJ cha = new ChaCJ(kan_ming.getText());
+                        } catch (ClassNotFoundException ex) {
+                            ex.printStackTrace();
+                        } catch (SQLException ex) {
+                            ex.printStackTrace();
+                        }
+
 
                     }else{
                         kan_bu.setText("您还没有教授这门课！");
