@@ -93,7 +93,7 @@ public class JiaoShi {
             JLabel L5 = new JLabel(X[5]);
             JLabel L6 = new JLabel(X[6]);
             JButton luchengji = new JButton("录所授成绩");  //按钮
-            JButton kan = new JButton("看学生成绩");
+            JButton kan = new JButton("查看或录入学生成绩");  //引入了表格的方法可以从表格中直接修改学生成绩
             JButton gai = new JButton("修改密码");
 
 
@@ -125,7 +125,7 @@ public class JiaoShi {
 
             //查看学生成绩窗口
             //第二个窗口 录成绩的窗口   语句和按键  点击了录学生成绩就出现的窗口
-            JDialog chakan = new JDialog(jf, "查看学生成绩");
+            JDialog chakan = new JDialog(jf, "查看并录入学生成绩");
             chakan.setBounds(400, 400, 400, 200);
 
             JPanel jp3 = new JPanel(new GridLayout(2, 1, 80, 80));
@@ -173,7 +173,7 @@ public class JiaoShi {
 
 
             //第二个窗口 录成绩的窗口   语句和按键  点击了录学生成绩就出现的窗口
-            JDialog jd = new JDialog(jf, "录入学生成绩");
+            JDialog jd = new JDialog(jf, "修改学生成绩");
             jd.setBounds(400, 400, 500, 400);
 
             JPanel jp2 = new JPanel(new GridLayout(4, 1, 80, 80));
@@ -238,7 +238,7 @@ public class JiaoShi {
                             ex.printStackTrace();
                         }
 
-                        queren.setText("录入成功！");
+                        queren.setText("修改成功！");
                     }
 
 
