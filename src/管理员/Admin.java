@@ -73,41 +73,55 @@ public class Admin {
         jf.add(jp);
 
 
-
-            JDialog jd = new JDialog(jf, "重置密码");
-            jd.setBounds(700, 400, 300, 200);
-
-
+            //教师的重置界面
+            JDialog jdj = new JDialog(jf, "重置教师密码");
+            jdj.setBounds(700, 400, 300, 200);
             //语句和按键 重置密码操作
 
-            JPanel jp2 = new JPanel(new GridLayout(2, 1, 40, 70));
-            JTextField jt = new JTextField("");
-            JButton jb = new JButton("确认");
-            jp2.add(jt);
-            jp2.add(jb);
-            jd.add(jp2);
+            JPanel jpj = new JPanel(new GridLayout(2, 1, 40, 70));
+            JTextField jtj = new JTextField("请输入职工号");
+            JButton jbj = new JButton("确认");
+            jpj.add(jtj);
+            jpj.add(jbj);
+            jdj.add(jpj);
+
+
+
+        //学生的重置界面
+         JDialog jdx = new JDialog(jf, "重置学生密码");
+         jdx.setBounds(700, 400, 300, 200);
+        //语句和按键 重置密码操作
+
+        JPanel jpx = new JPanel(new GridLayout(2, 1, 40, 70));
+        JTextField jtx = new JTextField("请输入学号");
+        JButton jbx = new JButton("确认");
+        jpx.add(jtx);
+        jpx.add(jbx);
+        jdx.add(jpx);
+
+
+
 
             //重置教师密码
             jb1.addActionListener(new AbstractAction() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
 
-                    jt.setText("请输入职工号");
-                    jb.setText("确认");
-                    jd.setVisible(true);
+
+                    jdj.setVisible(true);
                     ChaShiCun cha = new ChaShiCun();
 
 
-                    jb.addActionListener(new AbstractAction() {
+                    jbj.addActionListener(new AbstractAction() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
-                            if(cha.ChaCun(jt.getText())){
-                                jb.setText("重置成功!");
+                            if(cha.ChaCun(jtj.getText())){
+                                jbj.setText("重置成功!");
                                 ChongZhi chong  = new ChongZhi();
-                                chong.Chong(jt.getText(),"123456","职工号" , "tea");
+                                chong.Chong(jtj.getText(),"123456","职工号" , "tea");
                             }
                             else {
-                                jb.setText("该老师不存在!");
+                                jbj.setText("该老师不存在!");
                             }
                         }
 
@@ -121,24 +135,23 @@ public class Admin {
         jb2.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                jt.setText("请输入学号");
-                jb.setText("确认");
-                jd.setVisible(true);
+
+                jdx.setVisible(true);
                 ChaCun cha = new ChaCun();
 
 
                 //为二级菜单添加确认
 
-                jb.addActionListener(new AbstractAction() {
+                jbx.addActionListener(new AbstractAction() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        if(cha.ChaXue(jt.getText())){
-                            jb.setText("重置成功!");
+                        if(cha.ChaXue(jtx.getText())){
+                            jbx.setText("重置成功!");
                             ChongZhi chong  = new ChongZhi();
-                            chong.Chong(jt.getText(),"123123","学号" , "stu");
+                            chong.Chong(jtx.getText(),"123123","学号" , "stu");
                         }
                         else {
-                            jb.setText("该学生不存在!");
+                            jbx.setText("该学生不存在!");
                         }
                     }
 
@@ -151,33 +164,45 @@ public class Admin {
 
 
 // 配置课程
+//配置教师课程的界面
+        JDialog jdo = new JDialog(jf, "配置课程");
+        jdo.setBounds(700, 400, 300, 200);
 
-        JDialog jd1 = new JDialog(jf, "配置课程");
-        jd1.setBounds(700, 400, 300, 200);
+        JPanel jpo = new JPanel(new GridLayout(3, 1, 0, 0));
+        JTextField jfo1 = new JTextField("请输入教师职工号");
+        JTextField jfo2 = new JTextField("请输入课号");
+        JButton  jbo= new JButton("确认");
+        jpo.add(jfo1);
+        jpo.add(jfo2);
+        jpo.add(jbo);
+        jdo.add(jpo);
 
-        JPanel jp3 = new JPanel(new GridLayout(3, 1, 0, 0));
-        JTextField jf1 = new JTextField("");
-        JTextField jf2 = new JTextField("");
-        JButton  jb11= new JButton("确认");
-        jp3.add(jf1);
-        jp3.add(jf2);
-        jp3.add(jb11);
-        jd1.add(jp3);
+        //配置学生课程的界面
+        JDialog jdp = new JDialog(jf, "配置课程");
+        jdp.setBounds(700, 400, 300, 200);
+
+        JPanel jpp = new JPanel(new GridLayout(3, 1, 0, 0));
+        JTextField jfp1 = new JTextField("请输入学号");
+        JTextField jfp2 = new JTextField("请输入课程名");
+        JButton  jbp= new JButton("确认");
+        jpp.add(jfp1);
+        jpp.add(jfp2);
+        jpp.add(jbp);
+        jdp.add(jpp);
+
+
 
         //为老师配置课程
         jb3.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                jf1.setText("请输入教师职工号");
-                jf2.setText("请输入课号");
-                jb11.setText("确认");
-                jd1.setVisible(true);
+                jdo.setVisible(true);
                 ChaShiCun cha = new ChaShiCun();
 
-                jb11.addActionListener(new AbstractAction() {
+                jbo.addActionListener(new AbstractAction() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        if(cha.ChaCun(jf1.getText())){
+                        if(cha.ChaCun(jfo1.getText())){
 
 
                             LianJie lian = new LianJie();
@@ -187,9 +212,9 @@ public class Admin {
                                 try {
                                     stmt = conn.createStatement();
 
-                                    String sql = "update tea set 课号2  = '"+jf2.getText()+"' where 职工号 = '" + jf1.getText()+"';";
+                                    String sql = "update tea set 课号2  = '"+jfo2.getText()+"' where 职工号 = '" + jfo1.getText()+"';";
                                     int rs = stmt.executeUpdate(sql);
-                                    jb11.setText("配课成功!");
+                                    jbo.setText("配课成功!");
 
                                 } catch (SQLException ex) {
                                     ex.printStackTrace();
@@ -201,7 +226,7 @@ public class Admin {
 
                             }
                         else {
-                            jb11.setText("该老师不存在!");
+                            jbo.setText("该老师不存在!");
                         }
                     }
 
@@ -215,18 +240,16 @@ public class Admin {
         jb4.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                jf1.setText("请输入学号");
-                jf2.setText("请输入课名");
-                jb11.setText("确认");
-                jd1.setVisible(true);
+
+                jdp.setVisible(true);
                ChaCun cha = new ChaCun();
 
-                jb11.addActionListener(new AbstractAction() {
+                jbp.addActionListener(new AbstractAction() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        if(cha.ChaXue(jf1.getText())){
+                        if(cha.ChaXue(jfp1.getText())){
 
-                            if(jf2.getText().equals("市场营销")||jf2.getText().equals("企业管理")){
+                            if(jfp2.getText().equals("市场营销")||jfp2.getText().equals("企业管理")){
                                 LianJie lian = new LianJie();
                                 Connection conn = lian.lianjie();
                                 Statement stmt = null;
@@ -234,24 +257,24 @@ public class Admin {
                                 try {
                                     stmt = conn.createStatement();
                                                             //学生表 增加一个数据
-                                    String sql = "update stu set 选修  = '"+jf2.getText()+"' where 学号 = '" + jf1.getText()+"';";
+                                    String sql = "update stu set 选修  = '"+jfp2.getText()+"' where 学号 = '" + jfp1.getText()+"';";
                                     int rs = stmt.executeUpdate(sql);
                                                           //成绩表 增加一个成绩
-                                     sql = "update grade1 set "+jf2.getText()+ " = '0'  where 学号 = '" + jf1.getText()+"';";
+                                     sql = "update grade1 set "+jfp2.getText()+ " = '0'  where 学号 = '" + jfp1.getText()+"';";
                                      rs = stmt.executeUpdate(sql);
 
-                                    jb11.setText("选课成功!");
+                                    jbp.setText("选课成功!");
 
                                 } catch (SQLException ex) {
                                     ex.printStackTrace();
                                 }
 
 
-                            }else{jb11.setText("本学期不可选此课"); }
+                            }else{jbp.setText("本学期不可选此课"); }
 
                         }
                         else {
-                            jb11.setText("该学生不存在!");
+                            jbp.setText("该学生不存在!");
                         }
                     }
 

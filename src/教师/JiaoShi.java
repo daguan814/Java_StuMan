@@ -92,8 +92,8 @@ public class JiaoShi {
             JLabel L4 = new JLabel("所教授课号：");
             JLabel L5 = new JLabel(X[5]);
             JLabel L6 = new JLabel(X[6]);
-            JButton luchengji = new JButton("录所授成绩");  //按钮
-            JButton kan = new JButton("查看或录入学生成绩");  //引入了表格的方法可以从表格中直接修改学生成绩
+            JButton luchengji = new JButton("修改单个学生成绩");  //按钮
+            JButton kan = new JButton("查看录入所授科目成绩");  //引入了表格的方法可以从表格中直接修改学生成绩
             JButton gai = new JButton("修改密码");
 
 

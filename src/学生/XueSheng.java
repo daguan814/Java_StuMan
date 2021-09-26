@@ -167,28 +167,29 @@ public class XueSheng {
                 }
             });
 
+
             //修改密码
             JDialog jd1 = new JDialog(jf, "修改密码");
             jd1.setBounds(400, 400, 300, 200);
 
-            JPanel jp5 = new JPanel(new GridLayout(2, 1, 60, 60));
+            JPanel jp5 = new JPanel(new GridLayout(2, 1, 90, 90));
             JTextField mima = new JTextField("请输入新密码");
             JButton ok = new JButton("确认");
             jp5.add(mima);
             jp5.add(ok);
             jd1.add(jp5);
 
-
-
             gai.addActionListener(new AbstractAction() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
+
                     jd1.setVisible(true);
+
                     ok.addActionListener(new AbstractAction() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
-                            GaiPSW gai = new GaiPSW();
-                            gai.xiugaimima(1,temp,mima.getText());
+                            GaiPSW ga = new GaiPSW();
+                            ga.xiugaimima(1,temp,mima.getText());
                             ok.setText("修改成功");
                         }
                     });
@@ -212,14 +213,14 @@ public class XueSheng {
             //选课
 
             JDialog jd9 = new JDialog(jf, "选本学期课程");
-            jd1.setBounds(700, 400, 300, 200);
+            jd9.setBounds(700, 400, 300, 200);
 
             JPanel jp3 = new JPanel(new GridLayout(2, 1, 60, 60));
             JTextField jf1 = new JTextField("");
             JButton  jb11= new JButton("确认");
             jp3.add(jf1);
             jp3.add(jb11);
-            jd1.add(jp3);
+            jd9.add(jp3);
 
             //选课
             Xuan.addActionListener(new AbstractAction() {
@@ -228,7 +229,7 @@ public class XueSheng {
                     jf1.setText("请输入课名");
 
                     jb11.setText("确认");
-                    jd1.setVisible(true);
+                    jd9.setVisible(true);
                     ChaCun cha = new ChaCun();
 
                     jb11.addActionListener(new AbstractAction() {

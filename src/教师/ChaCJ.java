@@ -116,7 +116,7 @@ public class ChaCJ extends JFrame {
                     }
                 }
 
-
+                jb.setText("录入成功！");
             }
         });
 
