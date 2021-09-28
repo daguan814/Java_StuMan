@@ -17,30 +17,30 @@ import java.sql.Statement;
  * @date: 2021/9/13  19:09
  */
 
-public class ChengJi {
+public class ChengJi {//成绩类
 
 
-        JFrame jf = new JFrame("本学期成绩表");
-        GridLayout buju = new GridLayout(7, 2, 0, 0);
-        JPanel jp = new JPanel(buju);
-        Login login = new Login();
-        String zhanghao = login.zhanghaofin;
-        LianJie lian = new LianJie();
-        Connection conn = lian.lianjie();
-        Statement stmt = null;
+        JFrame jf = new JFrame("本学期成绩表");//创建窗口
+        GridLayout buju = new GridLayout(7, 2, 0, 0);//设定布局大小
+        JPanel jp = new JPanel(buju);//添加
+        Login login = new Login();//调用登录的对象
+        String zhanghao = login.zhanghaofin;//调用登录账号信息
+        LianJie lian = new LianJie();//连接
+        Connection conn = lian.lianjie();//连接
+        Statement stmt = null;//通道
 
 
         public void chacheng(int xueqi) {
-        jf.setBounds(800, 400, 500, 400);
-        jf.setResizable(false);
-        jf.setVisible(true);
+        jf.setBounds(800, 400, 500, 400);//设置窗口大小
+        jf.setResizable(false);//不可调整
+        jf.setVisible(true);//可见
 
 
 
 
         try {
 
-            //获取学生成绩数据
+            //获取数据库学生成绩数据
             stmt = conn.createStatement();
             String[] X = new String[10];
             String[] ke = new String[10];
@@ -48,7 +48,7 @@ public class ChengJi {
             String diyi;
 
             //判断学期，然后进行操作
-            if (xueqi == 1) {
+            if (xueqi == 1) {//上学期数据
                 sql = " select  * from grade1 where 学号='" + zhanghao + "';";
                 diyi = "当前学期：上学期";
                 ke[1] = "C语言   ";
@@ -60,7 +60,7 @@ public class ChengJi {
                 ke[7] = "企业管理   ";
 
 
-            } else {
+            } else {//下学期数据
                 sql = " select  * from grade2 where 学号='" + zhanghao + "';";
                 diyi = "当前学期：下学期";
                 ke[1] = "高等数学1   ";
@@ -75,7 +75,7 @@ public class ChengJi {
 
 
             if (rs.next()) {
-                //是成绩表中的8个数据
+                //是成绩表中的8个数据 对应上面
                 X[1] = rs.getString(1);
                 X[2] = rs.getString(2);
                 X[3] = rs.getString(3);
@@ -87,7 +87,7 @@ public class ChengJi {
             }
 
 
-            String xuehao = "当前登录学号：" + X[1];
+            String xuehao = "当前登录学号：" + X[1];//当前登录学号
 
             //判断选修课选了没有或者考试了没有
             if (X[7]==null) {
@@ -102,7 +102,7 @@ public class ChengJi {
             }
 
 
-            //将组件定义
+            //创建组件并将组件定义 赋值
             JLabel L1 = new JLabel(diyi);
             JLabel L2 = new JLabel(xuehao);
             JLabel L3 = new JLabel("必修课成绩");
@@ -117,7 +117,7 @@ public class ChengJi {
             JLabel L12 = new JLabel("");
             JLabel L13 = new JLabel(ke[5] + X[6]);
             JLabel L14 = new JLabel("");
-
+//把组件添加进布局
             jp.add(L1);
             jp.add(L2);
             jp.add(L3);

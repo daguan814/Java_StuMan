@@ -12,40 +12,40 @@ import 管理员.Admin;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
+import java.awt.event.ActionEvent;  //导包
 
-public class Login {
+public class Login {//类
 
-    public static String zhanghaofin;
-    public static String mimafin;
+    public static String zhanghaofin;//账号变量
+    public static String mimafin;//密码变量
 
-    public static void main(String[] args) {
-        JFrame jf = new JFrame("教务系统_登录");
-        jf.setBounds(600, 300, 600, 500);
-        GridLayout wangge = new GridLayout(4, 2, 1, 100);
+    public static void main(String[] args) { //主函数
+        JFrame jf = new JFrame("教务系统_登录");//新建一个窗口
+        jf.setBounds(600, 300, 600, 500);//窗口的大小和位置
+        GridLayout wangge = new GridLayout(4, 2, 1, 100);//网格布局
 
-        JPanel jp = new JPanel(wangge);
+        JPanel jp = new JPanel(wangge);//把布局嵌套在窗口上面
 
 
         //首行
-        JLabel null1 = new JLabel("                登");
-        JLabel denglu1 = new JLabel("录");
-        Font zi = new Font("宋体", Font.TYPE1_FONT, 30);
-        denglu1.setFont(zi);
-        null1.setFont(zi);
+        JLabel null1 = new JLabel("                登");//文本标签
+        JLabel denglu1 = new JLabel("录");//文本标签
+        Font zi = new Font("宋体", Font.TYPE1_FONT, 30);//设定字体
+        denglu1.setFont(zi);//设置字体
+        null1.setFont(zi);//设置字体
 
 
         //第二行
-        JLabel zhanghaolabel = new JLabel(" (提示：账号是学号)   账号：");
-        Font xi = new Font("宋体", Font.TYPE1_FONT, 20);
-        zhanghaolabel.setFont(xi);
-        JTextField username = new JTextField();
+        JLabel zhanghaolabel = new JLabel(" (提示：账号是学号)   账号：");//文本标签
+        Font xi = new Font("宋体", Font.TYPE1_FONT, 20);//设定字体
+        zhanghaolabel.setFont(xi);//设置字体
+        JTextField username = new JTextField();//文本输入框
 
         //第三行
-        JLabel mimalabel2 = new JLabel(" (初始密码：123123)  密码：");
+        JLabel mimalabel2 = new JLabel(" (初始密码：123123)  密码：");//文本标签
 
-        mimalabel2.setFont(xi);
-        JPasswordField pwd = new JPasswordField();
+        mimalabel2.setFont(xi);//设定字体
+        JPasswordField pwd = new JPasswordField();//密码框
 
 
         // 第四行    两个按钮 登录和注册
@@ -65,27 +65,27 @@ public class Login {
         jp.add(qingkong);
         jf.add(jp);
 
-        zhanghaofin=  username.getText();
-        System.out.println(zhanghaofin);
+        zhanghaofin=  username.getText();//从42文本框中获取账号
+        System.out.println(zhanghaofin);//输出账号信息
 
-        jf.setResizable(false);
-        jf.setVisible(true);
-        jf.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        jf.setResizable(false);//使窗口不可调整大小
+        jf.setVisible(true);//使窗口可见
+        jf.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);//设定窗口关闭
 
 
         //第二个窗口
-        JDialog jd = new JDialog(jf, "确认登录？");
-        jd.setBounds(700, 400, 300, 200);
-        LianJie Con = new LianJie();
+        JDialog jd = new JDialog(jf, "确认登录？");//继承第一个窗口
+        jd.setBounds(700, 400, 300, 200);//设定大小
+        LianJie Con = new LianJie();//连接数据库
 
         //语句和按键
-        JPanel jp2 = new JPanel(new GridLayout(4, 1, 0, 0));
-        Con.lianjie();
-        JLabel lianjietip = new JLabel(Con.chenggong);
-        JLabel lab = new JLabel();
-        JButton queren = new JButton("确定");
+        JPanel jp2 = new JPanel(new GridLayout(4, 1, 0, 0));//第二个布局
+        Con.lianjie();//79使用上面的函数连接数据库
+        JLabel lianjietip = new JLabel(Con.chenggong);//文本标签
+        JLabel lab = new JLabel();//标签
+        JButton queren = new JButton("确定");//按钮
 
-        //添加进组件里
+        //添加进第二个布局里
         jp2.add(lianjietip);
         jp2.add(lab);
         jp2.add(queren);
@@ -98,10 +98,10 @@ public class Login {
         jbdeng.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               zhanghaofin=  username.getText();
-               mimafin = pwd.getText();
-               lab.setText(yan.yanzheng());
-                jd.setVisible(true);
+               zhanghaofin=  username.getText();//获取账号
+               mimafin = pwd.getText();//获取密码
+               lab.setText(yan.yanzheng());//设定文本
+                jd.setVisible(true);//使第二个窗口可见
 
             }
         });
@@ -110,9 +110,9 @@ public class Login {
         //清空输入的东西
         qingkong.addActionListener(new AbstractAction() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                username.setText("");
-                pwd.setText("");
+            public void actionPerformed(ActionEvent e) {//设定文本框内容为空
+                username.setText("");//设定文本框内容为空
+                pwd.setText("");//设定文本框内容为空
             }
         });
 
@@ -124,7 +124,7 @@ public class Login {
 
         queren.addActionListener(new AbstractAction() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {//判断密码正误
                 if(yan.yanzheng().equals("密码错误！")){
                     jd.setVisible(false);
                 }else if(yan.yanzheng().equals("该账号不存在！")){
