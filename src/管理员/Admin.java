@@ -1,15 +1,12 @@
 package 管理员;
 
-import 学生.ChengJi;
 import 教师.ChaCun;
-import 登录_Main.LianJie;
-import 登录_Main.Login;
+import loginmain.LianJie;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 

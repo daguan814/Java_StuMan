@@ -8,7 +8,7 @@ package 教师;
  */
 
 
-import 登录_Main.LianJie;
+import loginmain.LianJie;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;

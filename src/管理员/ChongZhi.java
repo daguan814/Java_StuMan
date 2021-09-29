@@ -1,12 +1,8 @@
 package 管理员;
 
-import 登录_Main.LianJie;
-import 登录_Main.Login;
+import loginmain.LianJie;
 
-import javax.swing.*;
-import java.awt.*;
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 

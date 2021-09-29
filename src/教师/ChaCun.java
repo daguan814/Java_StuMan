@@ -1,7 +1,6 @@
 package 教师;
 
-import 登录_Main.LianJie;
-import 登录_Main.Login;
+import loginmain.LianJie;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

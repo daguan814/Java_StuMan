@@ -1,9 +1,8 @@
 package 教师;
 
-import 学生.ChengJi;
-import 登录_Main.GaiPSW;
-import 登录_Main.LianJie;
-import 登录_Main.Login;
+import loginmain.GaiPSW;
+import loginmain.LianJie;
+import loginmain.Login;
 
 import javax.swing.*;
 import java.awt.*;

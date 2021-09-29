@@ -1,9 +1,9 @@
 package 学生;
 
 import 教师.ChaCun;
-import 登录_Main.GaiPSW;
-import 登录_Main.LianJie;
-import 登录_Main.Login;
+import loginmain.GaiPSW;
+import loginmain.LianJie;
+import loginmain.Login;
 
 import javax.swing.*;
 import java.awt.*;

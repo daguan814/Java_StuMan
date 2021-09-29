@@ -1,6 +1,6 @@
 package 管理员;
 
-import 登录_Main.LianJie;
+import loginmain.LianJie;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

@@ -4,7 +4,7 @@
  * @author: 登录
  * @date: 9：35 9月12日
  */
-package 登录_Main;
+package loginmain;
 
 import 学生.XueSheng;
 import 教师.JiaoShi;

@@ -1,4 +1,4 @@
-package 登录_Main;
+package loginmain;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
