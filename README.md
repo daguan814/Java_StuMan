@@ -1,4 +1,4 @@
-# Java_Project
-Java的小项目
+# Java_StuMan
+学生管理系统
 
-包括学生管理系统
+
